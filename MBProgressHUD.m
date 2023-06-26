@@ -84,7 +84,7 @@ static const CGFloat MBDefaultDetailsLabelFontSize = 12.f;
     _defaultMotionEffectsEnabled = NO;
 
     if (@available(iOS 13.0, tvOS 13, *)) {
-       _contentColor = [[UIColor labelColor] colorWithAlphaComponent:0.7f];
+        _contentColor = [UIColor whiteColor];
     } else {
         _contentColor = [UIColor colorWithWhite:0.f alpha:0.7f];
     }
@@ -1057,7 +1057,7 @@ static const CGFloat MBDefaultDetailsLabelFontSize = 12.f;
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if ((self = [super initWithFrame:frame])) {
-        _style = MBProgressHUDBackgroundStyleBlur;
+        _style = MBProgressHUDBackgroundStyleSolidColor;
         if (@available(iOS 13.0, *)) {
             #if TARGET_OS_TV
             _blurEffectStyle = UIBlurEffectStyleRegular;
@@ -1070,6 +1070,7 @@ static const CGFloat MBDefaultDetailsLabelFontSize = 12.f;
             _color = [UIColor colorWithWhite:0.8f alpha:0.6f];
         }
 
+        _color = [[UIColor blackColor] colorWithAlphaComponent:0.8f];
         self.clipsToBounds = YES;
 
         [self updateForBackgroundStyle];
@@ -1169,7 +1170,7 @@ static const CGFloat MBDefaultDetailsLabelFontSize = 12.f;
 - (CGSize)intrinsicContentSize {
     // Only show if we have associated control events and a title
     if ((self.allControlEvents == 0) || ([self titleForState:UIControlStateNormal].length == 0))
-		return CGSizeZero;
+        return CGSizeZero;
     CGSize size = [super intrinsicContentSize];
     // Add some side padding
     size.width += 20.f;
